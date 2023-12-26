@@ -5,6 +5,11 @@ console.log("Hello World");
 
 app.use("/public", express.static(__dirname + "/public"));
 
+app.use((req, res, next) => {
+  console.log(req.method + " " + req.path + " - " + req.ip);
+  next();
+});
+
 app.get("/", (req, res) => {
   //   console.log("Hello Express");
   //   res.send("Hello Express");
@@ -13,8 +18,9 @@ app.get("/", (req, res) => {
 
 app.get("/json", (req, res) => {
   let response = "Hello json";
+  console.log("process.env", process.env.MESSAGE_STYLE);
   if (process.env.MESSAGE_STYLE === "uppercase") {
-    res.json({ message: response.toUpperCase() });
+    response = response.toUpperCase();
   }
   res.json({ message: response });
 });
