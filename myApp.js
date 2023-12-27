@@ -16,6 +16,16 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/views/index.html");
 });
 
+app.get(
+  "/now",
+  (req, res, next) => {
+    req.time = new Date().toString();
+  },
+  (req, res) => {
+    res.json({ time: req.time });
+  }
+);
+
 app.get("/json", (req, res) => {
   let response = "Hello json";
   console.log("process.env", process.env.MESSAGE_STYLE);
