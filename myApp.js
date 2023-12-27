@@ -1,15 +1,22 @@
 let express = require("express");
+let bodyParser = require("body-parser");
 let app = express();
 
 console.log("Hello World");
 
+//below this, it show us how to use one of express middle ware to serve our public files for /public routes
 app.use("/public", express.static(__dirname + "/public"));
 
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// below this, it is showing us how to use middle ware for all routes
 app.use((req, res, next) => {
   console.log(req.method + " " + req.path + " - " + req.ip);
   next();
 });
 
+// below this, we see how to serve files to http request
+// you sholud know that, __dirname is node glbal variable that store the absolute file
 app.get("/", (req, res) => {
   //   console.log("Hello Express");
   //   res.send("Hello Express");
