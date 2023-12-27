@@ -32,6 +32,25 @@ app.get("/:word/echo", (req, res) => {
   });
 });
 
+app
+  .route("/name")
+  .get((req, res) => {
+    let firstName = req.query.first;
+    let lastName = req.query.last;
+
+    res.json({
+      name: `${firstName} ${" "} ${lastName}`,
+    });
+  })
+  .post((req, res) => {
+    let firstName = req.query.first;
+    let lastName = req.query.last;
+
+    res.json({
+      name: `${firstName} ${" "} ${lastName}`,
+    });
+  });
+
 app.get("/json", (req, res) => {
   let response = "Hello json";
   console.log("process.env", process.env.MESSAGE_STYLE);
