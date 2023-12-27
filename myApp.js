@@ -51,8 +51,8 @@ app
     });
   })
   .post((req, res) => {
-    let firstName = req.query.first;
-    let lastName = req.query.last;
+    let firstName = req.body.first;
+    let lastName = req.body.last;
 
     res.json({
       name: `${firstName} ${lastName}`,
