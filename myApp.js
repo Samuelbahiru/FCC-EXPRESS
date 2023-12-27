@@ -35,11 +35,12 @@ app.get("/:word/echo", (req, res) => {
 app
   .route("/name")
   .get((req, res) => {
+    console.log("req", req.query);
     let firstName = req.query.first;
     let lastName = req.query.last;
 
     res.json({
-      name: `${firstName} ${" "} ${lastName}`,
+      name: `${firstName} ${lastName}`,
     });
   })
   .post((req, res) => {
@@ -47,7 +48,7 @@ app
     let lastName = req.query.last;
 
     res.json({
-      name: `${firstName} ${" "} ${lastName}`,
+      name: `${firstName} ${lastName}`,
     });
   });
 
